@@ -41,19 +41,19 @@ public class Main {
                 Client client = new Client(random.nextInt(100, 200), booleans.get(random.nextInt(booleans.size())));
                 nrOfProducts = random.nextInt(1, 4);
                 if (client.isLactoseTolerant()) {
-                    System.out.println("A client comes and has " + client.getMoney() + " money and likes Milk");
+                    System.out.println("A client comes and has " + client.getMoney() + " coins and likes Milk");
                 } else {
-                    System.out.println("A client comes and has " + client.getMoney() + " money and hates Milk");
+                    System.out.println("A client comes and has " + client.getMoney() + " coins and hates Milk");
                 }
                 System.out.println("  Order: ");
                 for (int k = 0; k < nrOfProducts; k++) {
                     Coffee coffee = coffees.get(random.nextInt(coffees.size()));
-                    System.out.print(coffee.getName() + " that costs " + coffee.getPrice());
+                    System.out.print(coffee.getName() + " which costs " + coffee.getPrice());
                     if (client.getMoney() > coffee.getPrice()) {
                         if (companyCoffee.get(coffee) > 0){
                         companyCoffee.put(coffee, companyCoffee.get(coffee) - 1);
                         if ((coffee.isDairyMilk() == true) && (client.isLactoseTolerant() == false)) {
-                            System.out.println(" and client cannot buy it but it will have vegan milk with additional price");
+                            System.out.println(" and client cannot buy it but it will have vegan milk for an additional price");
                             client.setMoney(client.getMoney() - coffee.getPrice());
                             if (barista.getExperience() > 10) {
                                 daySum += (coffee.getPrice() + 5) + random.nextInt(5, 10);
@@ -62,7 +62,7 @@ public class Main {
                             }
                             veg += 1;
                         } else {
-                            System.out.println(" and client buy it");
+                            System.out.println(" and client buys it");
                             client.setMoney(client.getMoney() - coffee.getPrice());
 
                             if (barista.getExperience() > 10) {
@@ -78,10 +78,10 @@ public class Main {
                             default -> lat += 1;
                         }
                     }else{
-                            System.out.println(" There is not in stock ");
+                            System.out.println(" It is not in stock ");
                         }
                     } else {
-                        System.out.println(" He don't have enough money");
+                        System.out.println(" Client doesn't have enough coins");
                     }
                 }
             }
@@ -92,14 +92,14 @@ public class Main {
                 company.setTotalEarn(company.getTotalEarn() + monthSum);
                 System.out.println("++++++++++++++++++++++++++");
                 System.out.println(i / 30 + ". Month");
-                System.out.println("The month total money: " + monthSum);
+                System.out.println("The monthly gross income: " + monthSum);
                 float med = monthSum / 30.f;
                 double expendCoffee = (es + cap + am + lat) * espresso.getPrice() * 0.3;
                 double expendMilk = (cap + lat) * latte.getPrice() * 0.3;
                 double expendVegMilk = veg * 5 * 0.3;
                 double sum1 = expendMilk + expendCoffee + expendVegMilk;
                 double sum2 = barista.getSalary() + manager.getSalary();
-                System.out.println("The daily medium income: " + med);
+                System.out.println("The daily average income: " + med);
                 Map<Integer, String> stringIntegerMap = new HashMap<>();
                 stringIntegerMap.put(am, "Americano");
                 stringIntegerMap.put(cap, "Cappuccino");
@@ -109,11 +109,11 @@ public class Main {
                 System.out.println("Coffee price: " + expendCoffee);
                 System.out.println("Milk price: " + expendMilk);
                 System.out.println("Veg milk: " + expendVegMilk);
-                System.out.println("Total payment: " + sum1);
+                System.out.println("Total expenses: " + sum1);
                 System.out.println("Staff salary: " + sum2);
                 income = monthSum - (sum1 + sum2);
                 clearIncome += income;
-                System.out.println("Month income: " + income);
+                System.out.println("Monthly net income: " + income);
                 System.out.println("Espresso " + es);
                 System.out.println("Americano " + am);
                 System.out.println("Cappuccino " + cap);
